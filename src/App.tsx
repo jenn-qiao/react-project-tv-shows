@@ -26,8 +26,8 @@ function App(): JSX.Element {
     if (x.name > y.name) return 1;
     return 0;
   });
-  function handleOnChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    console.log(`https://api.tvmaze.com/shows/${e.target.value}/episodes`);
+  function getAndStoreDataFromApi(e: React.ChangeEvent<HTMLSelectElement>) {
+    setSearchTerm(`https://api.tvmaze.com/shows/${e.target.value}/episodes`);
 
     // useEffect(() => {
     //   const getAndStoreDataFromApi = async () => {
@@ -45,7 +45,7 @@ function App(): JSX.Element {
   return (
     <>
       <div>
-        <select onChange={handleOnChange}>
+        <select onChange={getAndStoreDataFromApi}>
           {episodesSorted.map((show) => (
             <option key={show.id} value={show.id}>
               {show.name}
@@ -71,7 +71,7 @@ function App(): JSX.Element {
         ))}
       </div>
       <div>
-        <p>https://api.tvmaze.com/shows/{parseFloat(searchTerm)}/episodes</p>
+        {/* <p>https://api.tvmaze.com/shows/{parseFloat(searchTerm)}/episodes</p> */}
       </div>
 
       <footer>
